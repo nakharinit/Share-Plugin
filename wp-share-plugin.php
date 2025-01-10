@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: WP-Share-Plugin
+Plugin Name: WP Share Plugin
 Description: A WordPress plugin that adds social share buttons (Facebook, Twitter, LINE, and Copy link) to posts.
 Version: 1.2
 Author: Nakharin
@@ -19,27 +19,31 @@ function custom_share_plugin_enqueue_scripts() {
             .share-container {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 15px;
                 margin-top: 15px;
-                flex-wrap: wrap; /* ช่วยให้ปุ่มอยู่ในแถวเดียวกันหรือแถวใหม่ได้เมื่อพื้นที่ไม่พอ */
+                flex-wrap: wrap; /* ช่วยให้ปุ่มอยู่ในแถวเดียวกันหรือแถวใหม่เมื่อพื้นที่ไม่พอ */
+                justify-content: flex-start; /* จัดให้เริ่มจากซ้าย */
             }
             .share-label {
                 font-weight: bold;
                 margin-right: 10px;
                 font-size: 14px;
+                display: block;
+                margin-bottom: 5px; /* ให้แยกจากปุ่มเมื่อจำเป็น */
             }
             .share-btn {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 35px;  /* ขนาดปุ่มลดลง */
-                height: 35px; /* ขนาดปุ่มลดลง */
+                width: 50px;  /* ขนาดปุ่มที่เหมาะสม */
+                height: 50px; /* ขนาดปุ่มที่เหมาะสม */
                 border-radius: 50%;
                 color: white;
                 text-decoration: none;
-                font-size: 18px; /* ขนาดไอคอนเล็กลง */
+                font-size: 24px; /* ขนาดไอคอนที่เหมาะสม */
                 transition: all 0.3s ease;
                 box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+                flex-shrink: 0; /* ป้องกันการย่อขนาดไอคอนเมื่อพื้นที่ไม่พอ */
             }
             .share-btn:hover {
                 transform: scale(1.1);
@@ -52,8 +56,8 @@ function custom_share_plugin_enqueue_scripts() {
                 background-color: #f5f5f5;
                 color: #333;
                 border-radius: 20px;
-                padding: 8px 15px;
-                font-size: 12px;
+                padding: 12px 20px;
+                font-size: 14px;
                 cursor: pointer;
                 border: none;
                 transition: all 0.3s ease;
@@ -64,22 +68,56 @@ function custom_share_plugin_enqueue_scripts() {
                 transform: scale(1.05);
             }
 
-            /* สำหรับอุปกรณ์ที่มีหน้าจอเล็ก */
-            @media (max-width: 768px) {
-                .share-container {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-
+            /* สำหรับอุปกรณ์ที่มีหน้าจอเล็ก (Tablet และมือถือ) */
+            @media (max-width: 1024px) {
                 .share-btn {
-                    width: 30px;
-                    height: 30px;
-                    font-size: 16px; /* ขนาดไอคอนเล็กลงในมือถือ */
+                    width: 45px;
+                    height: 45px;
+                    font-size: 22px; /* ปรับขนาดไอคอนบนอุปกรณ์ที่มีหน้าจอเล็ก */
                 }
 
                 .copy-btn {
-                    padding: 6px 12px;
-                    font-size: 10px; /* ขนาดฟอนต์เล็กลงในมือถือ */
+                    padding: 10px 18px;
+                    font-size: 12px;
+                }
+
+                .share-label {
+                    font-size: 12px;
+                    margin-bottom: 10px;
+                }
+            }
+
+            /* สำหรับอุปกรณ์มือถือ */
+            @media (max-width: 768px) {
+                .share-container {
+                    flex-direction: row;
+                    justify-content: space-evenly; /* ให้ปุ่มจัดอยู่ในแถวเดียวกัน */
+                }
+
+                .share-btn {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 20px; /* ปรับขนาดไอคอนบนมือถือ */
+                }
+
+                .copy-btn {
+                    padding: 8px 14px;
+                    font-size: 12px;
+                    margin-top: 8px;
+                }
+            }
+
+            /* สำหรับมือถือหน้าจอเล็กมาก */
+            @media (max-width: 480px) {
+                .share-btn {
+                    width: 35px !important;
+                    height: 35px !important;
+                    font-size: 18px !important; /* ลดขนาดไอคอนบนมือถือ */
+                }
+
+                .copy-btn {
+                    padding: 8px 12px;
+                    font-size: 10px; /* ปรับขนาดฟอนต์บนมือถือหน้าจอเล็ก */
                 }
             }
         ');
