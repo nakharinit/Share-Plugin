@@ -1,10 +1,11 @@
 <?php
 /*
-Plugin Name: WP Share Plugin
+Plugin Name: WP-Share-Plugin
 Description: A WordPress plugin that adds social share buttons (Facebook, Twitter, LINE, and Copy link) to posts.
 Version: 1.2
 Author: Nakharin
-License: MIT
+Plugin URI: https://github.com/nakharinit/WP-Share-Plugin
+License: GPL2
 */
 
 // Enqueue necessary styles and scripts only for posts
